@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
 
     TextView resultado;
     Button scanear;
+    Button generate;
+    EditText editTextInput;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +29,24 @@ public class MainActivity extends AppCompatActivity {
 
         resultado = findViewById(R.id.ResultText);
         scanear = findViewById(R.id.btnScanear);
+        generate = findViewById(R.id.btnGenerate);
+        editTextInput = findViewById(R.id.editTextInput);
+        imageView = findViewById(R.id.imageView);
 
         scanear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                new IntentIntegrator(MainActivity.this).initiateScan(); // `this` is the current Activity
+                IntentIntegrator integrator = new IntentIntegrator(MainActivity.this);
+                integrator.setOrientationLocked(false);
+                integrator.initiateScan();
+            }
+        });
+
+        generate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
